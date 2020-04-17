@@ -32,7 +32,6 @@ int non_interactive_mode(char **av __attribute__((unused)))
 		execo(args);
 		loop++;
 	}
-	
 	free(buffer);
 	freedom(2, args);
 	freedom(2, env_args);

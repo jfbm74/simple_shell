@@ -8,6 +8,7 @@ int execo(char **args)
 {
 	int status;
 	pid_t pid;
+
 	pid = fork();
 	if (!pid)
 	{

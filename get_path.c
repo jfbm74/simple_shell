@@ -42,6 +42,7 @@ void change_equal_sig(char *str)
  * @path: tokenized path enviroment
  * Return: Full path command if exists or just a given command
 */
+
 char *_insert_path(char **args, char **path)
 {
 	char *cwd = getcwd(NULL, 0);
@@ -52,15 +53,12 @@ char *_insert_path(char **args, char **path)
 
 	if (_strstr(args[0], "/"))
 	{
-		
 		tmp2 = args[0];
 	}
 	else
 	{
 		while (path[counter] != NULL)
 		{
-			
-
 			chdir(path[counter]);
 			if (stat(args[0], verify) == 0)
 			{
