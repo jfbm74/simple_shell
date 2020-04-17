@@ -55,7 +55,23 @@ int _interactive(char **av __attribute__((unused)))
 			if (b_func != NULL)
 			{
 				if (b_func == exit_func)
-					free_env(env_args, args);
+				{
+					if (buffer != NULL)
+					{
+						free(buffer);
+						buffer = NULL;
+					}
+					if (args != NULL)
+					{
+						freedom(2, args);
+						args =  NULL;
+					}
+					if (env_args != NULL)
+					{
+						freedom(2, env_args);
+						env_args = NULL;
+					}
+				}
 				b_func();
 			}
 			if (flag == 0)

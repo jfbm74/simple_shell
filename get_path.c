@@ -50,7 +50,7 @@ char *_insert_path(char **args, char **path)
 	int counter = 0;
 	char *tmp1 = NULL;
 	char *tmp2 = NULL;
-
+	/**Verificar si el comando ya tiene incluido algun tipo de directorio, en cuyo caso salta*/
 	if (_strstr(args[0], "/"))
 	{
 		tmp2 = args[0];
@@ -72,6 +72,7 @@ char *_insert_path(char **args, char **path)
 		}
 	}
 	chdir(cwd);
+	/** Si no encontró el directorio, lo retorna el comando original del usuario */
 	if (tmp2 == NULL)
 	{
 		tmp2 = args[0];
