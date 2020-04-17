@@ -7,8 +7,8 @@
 int execo(char **args)
 {
 	int status;
-	pid_t pid = fork();
-
+	pid_t pid;
+	pid = fork();
 	if (!pid)
 	{
 		if (execve(args[0], args, environ) == -1)

@@ -49,17 +49,17 @@ char *_insert_path(char **args, char **path)
 	int counter = 0;
 	char *tmp1 = NULL;
 	char *tmp2 = NULL;
-	/*char *ptr_path;*/
-	/*char *result;*/
 
 	if (_strstr(args[0], "/"))
 	{
+		
 		tmp2 = args[0];
 	}
 	else
 	{
 		while (path[counter] != NULL)
 		{
+			
 
 			chdir(path[counter]);
 			if (stat(args[0], verify) == 0)

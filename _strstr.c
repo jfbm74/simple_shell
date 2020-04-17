@@ -26,7 +26,7 @@ int _compare(char *x, char *y)
  * @y: string to compare
  * Return: pointer to the first occurence
 */
-char *stringstring(char *x, char *y)
+char *_strstr(char *x, char *y)
 {
 	while (*x != '\0')
 	{
