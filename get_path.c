@@ -30,7 +30,7 @@ void change_equal_sig(char *str)
 
 	while (ptr_str[0][i] != '=')
 	{
-		//ptr_str[0][i] = ':';
+		ptr_str[0][i] = ':';
 		i++;
 	}
 	ptr_str[0][i] = ':';
