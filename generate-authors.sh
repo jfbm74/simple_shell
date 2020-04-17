@@ -1,4 +1,4 @@
-#!/usr/bin/env bash /*This looks in all the environment for bash */
+#!/usr/bin/env bash
 set -e
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")/.."
