@@ -42,46 +42,53 @@ void change_equal_sig(char *str)
  * @path: tokenized path enviroment
  * Return: Full path command if exists or just a given command
 */
+
 char *_insert_path(char **args, char **path)
 {
 	char *cwd = getcwd(NULL, 0);
-	struct stat *verify = malloc(sizeof(struct stat));
+	struct stat verify;
 	int counter = 0;
-	char *tmp1 = NULL;
 	char *tmp2 = NULL;
 
 	if (_strstr(args[0], "/"))
 	{
-		
 		tmp2 = args[0];
 	}
 	else
 	{
 		while (path[counter] != NULL)
 		{
-			
-
-			chdir(path[counter]);
-			if (stat(args[0], verify) == 0)
+			tmp2 = malloc(sizeof(char *) * (strlen(path[counter]) + 1 + strlen(args[0])));
+			if (tmp2 == NULL)
 			{
-				tmp1 = strduplicate(args[0]);
-				tmp2 = strduplicate(path[counter]);
-				strconk(tmp2, "/");
-				strconk(tmp2, tmp1);
+				freedom(1, tmp2);
+			}
+			
+			chdir(path[counter]);
+			if (stat(args[0], &verify) == 0)
+			{
+				strcpy(tmp2, path[counter]);
+				strcat(tmp2, "/");
+				strcat(tmp2, args[0]);
 				break;
 			}
 			counter++;
 		}
 	}
 	chdir(cwd);
+	printf("%s\n", tmp2);
+	sleep(3);
 	if (tmp2 == NULL)
 	{
-		tmp2 = args[0];
+		freedom(1, cwd);
+		cwd = NULL;
+		freedom(1, tmp2);
+		tmp2 = NULL;
+		return (args[0]);
 	}
-	free(tmp1);
-	free(verify);
-	free(cwd);
-	tmp1 =  NULL;
+
+	freedom(1, cwd);
+	cwd = NULL;
 	return (tmp2);
 }
 
