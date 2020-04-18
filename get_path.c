@@ -54,10 +54,9 @@ char *_insert_path(char **args, char **path)
 
 	if (_strstr(args[0], "/"))
 	{
-		dirpath = args[0];
 		freedom(1, cwd);
 		cwd = NULL;
-		return (dirpath);
+		return (args[0]);
 	}
 	else
 	{
@@ -84,7 +83,7 @@ char *_insert_path(char **args, char **path)
 	chdir(cwd);
 	if (tmp2 == NULL)
 	{
-		dirpath = tmp2;
+		
 		freedom(1, cwd);
 		cwd = NULL;
 		freedom(1, tmp2);
