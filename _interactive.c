@@ -11,7 +11,7 @@ int _interactive(char **av __attribute__((unused)))
 	int  readbuffer = 0;
 	int (*b_func)() = NULL;
 	size_t bufsiz;
-	char *buffer = NULL, **args = NULL, **env_args = NULL;
+	char *buffer = NULL, **args = NULL, **env_args = NULL, *tmp = NULL;
 
 	while (1)
 	{
@@ -49,7 +49,7 @@ int _interactive(char **av __attribute__((unused)))
 		{
 			if (buffer[0] == 10 || buffer[0] == 9)
 				continue;
-			size = necklace_pearls(buffer);
+			size = necklace_pearls(buffer);/*This size is +1 from the return*/
 			args = parsing(buffer, size);
 			b_func = find_builtins(*args);
 			if (b_func != NULL)
@@ -79,21 +79,24 @@ int _interactive(char **av __attribute__((unused)))
 				env_args = getenvpath();
 				flag = 1;
 			}
-			args[0] = _insert_path(args, env_args);
+			tmp = _insert_path(args, env_args);/*tmp is Null if is not valid*/
+			if (tmp != NULL)
+			{
+			free(args[0]);
+			args[0] = tmp;
 			errcode = execo(args);
-			loop++;
+			} 
 			if (buffer != NULL)
 			{
 				freedom(1, buffer);
 				buffer = NULL;
 			}
-			
-			
 			if (args != NULL)
 			{
 				freedom(2, args);
 				args =  NULL;
 			}
+			loop++;
 			
 		}
 

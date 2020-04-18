@@ -51,12 +51,13 @@ char *strduplicate(char *s)
 	if (s == NULL)
 		return (NULL);
 	len = strlarge(s);
-	ptr = malloc(sizeof(char) * (len + 1));
+	ptr = malloc(sizeof(char) * (len + 2));/*#2 is for the /*/
 	if (ptr == NULL)
 		return (NULL);
 	for (i = 0; i < len; i++)
 		ptr[i] = s[i];
 	ptr[i] = '\0';
+	ptr[i++] = '\0';
 	return (ptr);
 }
 /**

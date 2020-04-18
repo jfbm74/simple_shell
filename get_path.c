@@ -46,7 +46,7 @@ void change_equal_sig(char *str)
 char *_insert_path(char **args, char **path)
 {
 	char *cwd = getcwd(NULL, 0);
-	struct stat *verify = malloc(sizeof(struct stat));
+	struct stat *verify = malloc(sizeof(struct stat) + 1);
 	int counter = 0;
 	char *tmp1 = NULL;
 	char *tmp2 = NULL;
@@ -64,6 +64,9 @@ char *_insert_path(char **args, char **path)
 			{
 				tmp1 = strduplicate(args[0]);
 				tmp2 = strduplicate(path[counter]);
+				/*while(tmp2[i] != '\0')
+					i++;*/
+				/*tmp2[i] = '/';*/
 				strconk(tmp2, "/");
 				strconk(tmp2, tmp1);
 				break;
@@ -73,14 +76,16 @@ char *_insert_path(char **args, char **path)
 	}
 	chdir(cwd);
 	/** Si no encontró el directorio, lo retorna el comando original del usuario */
-	if (tmp2 == NULL)
+	if(tmp1 != NULL)
 	{
-		tmp2 = args[0];
+		free(tmp1);
+		tmp1 =  NULL;
 	}
-	free(tmp1);
 	free(verify);
+	verify = NULL;
 	free(cwd);
-	tmp1 =  NULL;
+	cwd = NULL;
+	
 	return (tmp2);
 }
 
