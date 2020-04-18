@@ -48,25 +48,31 @@ char *_insert_path(char **args, char **path)
 	char *cwd = getcwd(NULL, 0);
 	struct stat verify;
 	int counter = 0;
+	int count_char = 0;
 	char *tmp2 = NULL;
+	char *dirpath = NULL;
 
 	if (_strstr(args[0], "/"))
 	{
-		tmp2 = args[0];
+		dirpath = args[0];
+		freedom(1, cwd);
+		cwd = NULL;
+		return (dirpath);
 	}
 	else
 	{
 		while (path[counter] != NULL)
 		{
-			tmp2 = malloc(sizeof(char *) * (strlen(path[counter]) + 1 + strlen(args[0])));
-			if (tmp2 == NULL)
-			{
-				freedom(1, tmp2);
-			}
-			
 			chdir(path[counter]);
 			if (stat(args[0], &verify) == 0)
 			{
+				count_char = strlen(path[counter]) + 1 + strlen(args[0]);
+				tmp2 = malloc(sizeof(char *) * count_char);
+				if (tmp2 == NULL)
+				{
+					freedom(1, tmp2);
+					exit(-1);
+				}
 				strcpy(tmp2, path[counter]);
 				strcat(tmp2, "/");
 				strcat(tmp2, args[0]);
@@ -76,20 +82,20 @@ char *_insert_path(char **args, char **path)
 		}
 	}
 	chdir(cwd);
-	printf("%s\n", tmp2);
-	sleep(3);
 	if (tmp2 == NULL)
 	{
+		dirpath = tmp2;
 		freedom(1, cwd);
 		cwd = NULL;
 		freedom(1, tmp2);
 		tmp2 = NULL;
-		return (args[0]);
+		return (dirpath);
 	}
-
+	dirpath = tmp2;
 	freedom(1, cwd);
 	cwd = NULL;
-	return (tmp2);
+	
+	return (dirpath);
 }
 
 /**

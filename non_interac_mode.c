@@ -13,6 +13,7 @@ int non_interactive_mode(char **av __attribute__((unused)))
 	int len = 0;
 	char **env_args = NULL;
 	int flag = 0;
+	char *full_command = NULL;
 
 	while ((len = getline(&buffer, &bufsiz, stdin)) > 0)
 	{
@@ -28,8 +29,8 @@ int non_interactive_mode(char **av __attribute__((unused)))
 			env_args = getenvpath();
 			flag = 1;
 		}
-		args[0] = _insert_path(args, env_args);
-		execo(args);
+		full_command = _insert_path(args, env_args);
+		execo(full_command, args);
 		loop++;
 	}
 	free(buffer);

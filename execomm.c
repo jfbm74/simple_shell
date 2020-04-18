@@ -4,7 +4,7 @@
  * @args: Given command
  * Return: Exit = 0 or Error Number
 */
-int execo(char **args)
+int execo(char *command, char **args)
 {
 	int status;
 	pid_t pid;
@@ -12,10 +12,11 @@ int execo(char **args)
 	pid = fork();
 	if (!pid)
 	{
-		if (execve(args[0], args, environ) == -1)
+		if (execve(command, args, environ) == -1)
 		{
 			int errcode = errno;
-
+			freedom(1, command);
+			command = NULL;
 			error_msg(args);
 			exit(errcode);
 		}
@@ -23,5 +24,7 @@ int execo(char **args)
 	else
 		wait(&status);
 	errcode = 0;
+	freedom(1, command);
+	command = NULL;
 	return (errcode);
 }
