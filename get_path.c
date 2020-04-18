@@ -56,7 +56,9 @@ char *_insert_path(char **args, char **path)
 	{
 		freedom(1, cwd);
 		cwd = NULL;
-		return (args[0]);
+		tmp2 = malloc(sizeof(char *) * strlen(args[0]));
+		strcpy(tmp2, args[0]);
+		return (tmp2);
 	}
 	else
 	{

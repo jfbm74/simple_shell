@@ -8,23 +8,21 @@ int execo(char *command, char **args)
 {
 	int status;
 	pid_t pid;
+	int errcode = 0;
 
-	printf("comm on parent = %s\n", command);
 	pid = fork();
 	if (!pid)
 	{
 		if (execve(command, args, environ) == -1)
 		{
-			printf("comm on error = %s\n", command);
-			int errcode = errno;
 			freedom(1, command);
 			command = NULL;
+			errcode = errno;
 			error_msg(args);
 			exit(errcode);
 		}
 		else
 		{
-			printf("comm on success = %s\n", command);
 			freedom(1, command);
 			command = NULL;
 			exit(errcode);

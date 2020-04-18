@@ -122,7 +122,7 @@ int _interactive(char **av __attribute__((unused)))
 				freedom(2, args);
 				args =  NULL;
 			}
-			
+			full_command = NULL;
 		}
 
 	}
