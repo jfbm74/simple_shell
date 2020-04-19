@@ -28,12 +28,12 @@ void change_equal_sig(char *str)
 
 	ptr_str = &str;
 
-	while (ptr_str[0][i] != '=')
+	while ((*(*ptr_str + i)) != '=')
 	{
-		ptr_str[0][i] = ':';
+		(*(*ptr_str + i)) = ':';
 		i++;
 	}
-	ptr_str[0][i] = ':';
+	(*(*ptr_str + i)) = ':';
 }
 
 /**
