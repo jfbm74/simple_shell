@@ -42,32 +42,41 @@ void change_equal_sig(char *str)
  * @path: tokenized path enviroment
  * Return: Full path command if exists or just a given command
 */
+
 char *_insert_path(char **args, char **path)
 {
 	char *cwd = getcwd(NULL, 0);
-	struct stat *verify = malloc(sizeof(struct stat));
+	struct stat verify;
 	int counter = 0;
-	char *tmp1 = NULL;
+	int count_char = 0;
 	char *tmp2 = NULL;
+	char *dirpath = NULL;
 
-	if (_strstr(args[0], "/"))
+	if (_strstr(args[0], "/") || _strstr(args[0], "."))
 	{
-		
-		tmp2 = args[0];
+		freedom(1, cwd);
+		cwd = NULL;
+		tmp2 = malloc(sizeof(char *) * (strlen(args[0])));
+		strcpy(tmp2, args[0]);
+		return (tmp2);
 	}
 	else
 	{
 		while (path[counter] != NULL)
 		{
-			
-
 			chdir(path[counter]);
-			if (stat(args[0], verify) == 0)
+			if (stat(args[0], &verify) == 0)
 			{
-				tmp1 = strduplicate(args[0]);
-				tmp2 = strduplicate(path[counter]);
-				strconk(tmp2, "/");
-				strconk(tmp2, tmp1);
+				count_char = strlen(path[counter]) + 1 + strlen(args[0]);
+				tmp2 = malloc(sizeof(char *) * count_char);
+				if (tmp2 == NULL)
+				{
+					freedom(1, tmp2);
+					exit(-1);
+				}
+				strcpy(tmp2, path[counter]);
+				strcat(tmp2, "/");
+				strcat(tmp2, args[0]);
 				break;
 			}
 			counter++;
@@ -76,13 +85,18 @@ char *_insert_path(char **args, char **path)
 	chdir(cwd);
 	if (tmp2 == NULL)
 	{
-		tmp2 = args[0];
+		
+		freedom(1, cwd);
+		cwd = NULL;
+		freedom(1, tmp2);
+		tmp2 = NULL;
+		return (dirpath);
 	}
-	free(tmp1);
-	free(verify);
-	free(cwd);
-	tmp1 =  NULL;
-	return (tmp2);
+	dirpath = tmp2;
+	freedom(1, cwd);
+	cwd = NULL;
+	
+	return (dirpath);
 }
 
 /**
@@ -101,4 +115,24 @@ char **getenvpath()
 	env_args = parsing(tmp, size_args);
 	tmp =  NULL;
 	return (env_args);
+}
+
+/**
+ * spaces_buster - Creates an array of pointers to the PATH directories
+ * Return: Pointer to an array of tokenized directories
+*/
+
+int spaces_buster(char *buffer)
+{
+	int i = 0;
+
+	while(buffer[i] != '\0')
+	{
+		if(buffer[i] != 32)
+		{
+			return(0);
+		}
+	i++;	
+	}
+	return(1);
 }
