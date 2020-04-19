@@ -49,7 +49,7 @@ int necklace_pearls(char *buffer);
 char **parsing(char *buffer, int characters);
 int execo(char *command, char **args);
 void free_all(char **dptr1, char **dptr2, char *sptr1, char *sptr2);
-void logo();
+void logo(void);
 /*Utilities*/
 int strncomparer(char *s1, char *s2, size_t n);
 int strlarge(char *s);

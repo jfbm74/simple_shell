@@ -13,7 +13,6 @@ int _interactive(char **av __attribute__((unused)))
 	size_t bufsiz;
 	char *buffer = NULL, **args = NULL, **env_args = NULL;
 	char *full_command = NULL;
-	
 	while (1)
 	{
 		write(STDOUT_FILENO, "($) ", 4);
@@ -26,8 +25,6 @@ int _interactive(char **av __attribute__((unused)))
 				free(buffer);
 				buffer = NULL;
 			}
-			
-			
 			if (args != NULL)
 			{
 				freedom(2, args);
@@ -87,7 +84,7 @@ int _interactive(char **av __attribute__((unused)))
 				flag = 1;
 			}
 
-			if(args[0] ==  NULL)
+			if (args[0] ==  NULL)
 				continue;
 			full_command = _insert_path(args, env_args);
 			if (full_command == NULL)

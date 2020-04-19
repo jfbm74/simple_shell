@@ -1,7 +1,8 @@
 #include "hsh.h"
 /**
  * execo - Executes a given command
- * @args: Given command
+ * @command: Given command
+ * @args: command arguments
  * Return: Exit = 0 or Error Number
 */
 int execo(char *command, char **args)
@@ -27,14 +28,12 @@ int execo(char *command, char **args)
 			command = NULL;
 			exit(errcode);
 		}
-		
 	}
 	else
 		wait(&status);
 
 	freedom(1, command);
 	command = NULL;
-	
 	errcode = 0;
 	return (errcode);
 }

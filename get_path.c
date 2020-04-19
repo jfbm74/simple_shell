@@ -85,7 +85,6 @@ char *_insert_path(char **args, char **path)
 	chdir(cwd);
 	if (tmp2 == NULL)
 	{
-		
 		freedom(1, cwd);
 		cwd = NULL;
 		freedom(1, tmp2);
@@ -95,7 +94,6 @@ char *_insert_path(char **args, char **path)
 	dirpath = tmp2;
 	freedom(1, cwd);
 	cwd = NULL;
-	
 	return (dirpath);
 }
 
@@ -119,6 +117,7 @@ char **getenvpath()
 
 /**
  * spaces_buster - Creates an array of pointers to the PATH directories
+ * @buffer: given string
  * Return: Pointer to an array of tokenized directories
 */
 
@@ -126,13 +125,13 @@ int spaces_buster(char *buffer)
 {
 	int i = 0;
 
-	while(buffer[i] != '\0')
+	while (buffer[i] != '\0')
 	{
-		if(buffer[i] != 32)
+		if (buffer[i] != 32)
 		{
-			return(0);
+			return (0);
 		}
-	i++;	
+	i++;
 	}
-	return(1);
+	return (1);
 }

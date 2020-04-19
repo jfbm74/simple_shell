@@ -6,7 +6,6 @@
 */
 int non_interactive_mode(char **av __attribute__((unused)))
 {
-	
 	char *buffer = NULL;
 	char *full_command = NULL;
 	int size, len, flag = 0;
@@ -70,6 +69,6 @@ int non_interactive_mode(char **av __attribute__((unused)))
 	freedom(1, buffer);
 	buffer = NULL;
 	freedom(2, env_args);
-	env_args = NULL;	
+	env_args = NULL;
 	return (0);
 }

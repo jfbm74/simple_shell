@@ -33,11 +33,11 @@ void freedom(int n, ...)
 }
 
 /**
-* free_env - frees tokenized PATH directories and user's arguments
+* free_all - frees tokenized PATH directories and user's arguments
 * @dptr1: first double pointer to free
 * @dptr2: second double pointer to free
 * @sptr1: first single pointer to free
-* @sptr1: second double pointer to free
+* @sptr2: second double pointer to free
 * Return: nothing
 */
 
