@@ -47,15 +47,16 @@ int non_interactive_mode(char **av);
 int _interactive(char **av __attribute__((unused)));
 int necklace_pearls(char *buffer);
 char **parsing(char *buffer, int characters);
-int execo(char **args);
-void free_env(char **env_args, char **args);
-
+int execo(char *command, char **args);
+void free_all(char **dptr1, char **dptr2, char *sptr1, char *sptr2);
+void logo();
 /*Utilities*/
-int strncomparer(char *s1,  char *s2, size_t n);
+int strncomparer(char *s1, char *s2, size_t n);
 int strlarge(char *s);
 char *strduplicate(char *s);
 int strcomparer(char *s1, char *s2);
 char *strconk(char *dest, char *src);
+int spaces_buster(char *buffer);
 
 int lennum(int n);
 char *int_to_charac(int num);
