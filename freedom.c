@@ -31,3 +31,37 @@ void freedom(int n, ...)
 		free(ptr2);
 	}
 }
+
+/**
+* free_env - frees tokenized PATH directories and user's arguments
+* @dptr1: first double pointer to free
+* @dptr2: second double pointer to free
+* @sptr1: first single pointer to free
+* @sptr1: second double pointer to free
+* Return: nothing
+*/
+
+void free_all(char **dptr1, char **dptr2, char *sptr1, char *sptr2)
+{
+
+	if (dptr1 != NULL)
+	{
+		freedom(2, dptr1);
+		dptr1 = NULL;
+	}
+	if (dptr2 != NULL)
+	{
+		freedom(2, dptr2);
+		dptr2 = NULL;
+	}
+	if (sptr1 != NULL)
+	{
+		free(sptr1);
+		sptr1 = NULL;
+	}
+	if (sptr2 != NULL)
+	{
+		free(sptr2);
+		sptr2 = NULL;
+	}
+}
