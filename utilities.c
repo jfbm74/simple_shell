@@ -1,4 +1,5 @@
 #include "hsh.h"
+
 /**
  * strncomparer - Compares two strings with n size
  * @s1: Given String 1
@@ -37,6 +38,7 @@ int strlarge(char *s)
 		;
 	return (len);
 }
+
 /**
  * strduplicate - Duplicates a given string
  * @s: given string
@@ -59,6 +61,7 @@ char *strduplicate(char *s)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 /**
  * strcomparer - Compares two given  strings
  * @s1: Given S1 String
@@ -81,6 +84,7 @@ int strcomparer(char *s1, char *s2)
 	}
 	return (diff);
 }
+
 /**
  *strconk - concatenates two strings.
  *@dest: destiny string
