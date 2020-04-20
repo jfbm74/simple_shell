@@ -25,12 +25,14 @@ int necklace_pearls(char *buffer)
 	}
 	return (pearls + 1);
 }
+
 /**
  * parsing - Function that splits a given string
  * @buffer: Given string
  * @characters: number of elements
  * Return: Tokenized string
 */
+
 char **parsing(char *buffer, int characters)
 {
 	int counter = 0;
