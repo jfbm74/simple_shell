@@ -48,7 +48,7 @@ int non_interactive_mode(char **av __attribute__((unused)))
 			full_command = _insert_path(args, env_args);
 			if (full_command == NULL)
 			{
-				printf("./hsh: 1: %s: not found\n", args[0]);
+				write(STDOUT_FILENO, "command not found\n", 18);
 				freedom(1, buffer);
 				buffer = NULL;
 				freedom(2, args);
