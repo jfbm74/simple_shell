@@ -9,6 +9,7 @@ char *ret_path_line()
 {
 	char *path = NULL;
 	int i = 0;
+
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		if (strcomparer(environ[i], "PATH") == 0)
@@ -80,14 +81,8 @@ char *_insert_path(char **args, char **path)
 			{
 				count_char = strlarge(path[counter]) + 1 + strlarge(args[0]);
 				tmp2 = malloc(sizeof(char *) * count_char);
-				if (tmp2 == NULL)
-				{
-					freedom(1, tmp2);
-					exit(-1);
-				}
 				_strcpy(tmp2, path[counter]);
-				strconk(tmp2, "/");
-				strconk(tmp2, args[0]);
+				strconk(tmp2, "/"), strconk(tmp2, args[0]);
 				break;
 			}
 			counter++;
@@ -96,15 +91,11 @@ char *_insert_path(char **args, char **path)
 	chdir(cwd);
 	if (tmp2 == NULL)
 	{
-		freedom(1, cwd);
-		cwd = NULL;
-		freedom(1, tmp2);
-		tmp2 = NULL;
+		freedom(1, cwd), cwd = NULL;
+		freedom(1, tmp2), tmp2 = NULL;
 		return (dirpath);
 	}
-	dirpath = tmp2;
-	freedom(1, cwd);
-	cwd = NULL;
+	dirpath = tmp2, freedom(1, cwd), cwd = NULL;
 	return (dirpath);
 }
 
@@ -123,7 +114,7 @@ char **getenvpath()
 	change_equal_sig(tmp); /*Change  PATH= for PATH:*/
 	size_args = necklace_pearls(tmp);
 	env_args = parsing(tmp, size_args);
-	freedom(1,tmp);
+	freedom(1, tmp);
 	tmp =  NULL;
 	return (env_args);
 }

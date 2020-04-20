@@ -43,7 +43,6 @@ int notty(char **av __attribute__((unused)))
 		freedom(2, user_command), user_command = NULL;
 		freedom(2, env_args), env_args  = NULL;
 	}
-	freedom(1, buffer);
-	buffer = NULL;
+	freedom(1, buffer), buffer = NULL;
 	return (0);
 }
