@@ -89,7 +89,7 @@ int _interactive(char **av __attribute__((unused)))
 			full_command = _insert_path(args, env_args);
 			if (full_command == NULL)
 			{
-				printf("(%s) COMMAND NOT FOUND\n", args[0]);
+				write(STDOUT_FILENO, "command not found\n", 18);
 				if (buffer != NULL)
 				{
 					freedom(1, buffer);
