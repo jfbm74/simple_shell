@@ -4,6 +4,7 @@
  * ret_path_line - Finds the PATH variable from enviroment
  * Return: pointer position of the PATH variable
 */
+
 char *ret_path_line()
 {
 	int i = 0;
@@ -21,6 +22,7 @@ char *ret_path_line()
  * @str: given string
  * Return: Nohing
 */
+
 void change_equal_sig(char *str)
 {
 	char **ptr_str = NULL;
@@ -56,8 +58,8 @@ char *_insert_path(char **args, char **path)
 	{
 		freedom(1, cwd);
 		cwd = NULL;
-		tmp2 = malloc(sizeof(char *) * (strlen(args[0])));
-		strcpy(tmp2, args[0]);
+		tmp2 = malloc(sizeof(char *) * (strlarge(args[0])));
+		_strcpy(tmp2, args[0]);
 		return (tmp2);
 	}
 	else
@@ -67,16 +69,16 @@ char *_insert_path(char **args, char **path)
 			chdir(path[counter]);
 			if (stat(args[0], &verify) == 0)
 			{
-				count_char = strlen(path[counter]) + 1 + strlen(args[0]);
+				count_char = strlarge(path[counter]) + 1 + strlarge(args[0]);
 				tmp2 = malloc(sizeof(char *) * count_char);
 				if (tmp2 == NULL)
 				{
 					freedom(1, tmp2);
 					exit(-1);
 				}
-				strcpy(tmp2, path[counter]);
-				strcat(tmp2, "/");
-				strcat(tmp2, args[0]);
+				_strcpy(tmp2, path[counter]);
+				strconk(tmp2, "/");
+				strconk(tmp2, args[0]);
 				break;
 			}
 			counter++;
@@ -101,6 +103,7 @@ char *_insert_path(char **args, char **path)
  * getenvpath - Creates an array of pointers to the PATH directories
  * Return: Pointer to an array of tokenized directories
 */
+
 char **getenvpath()
 {
 	char *tmp = NULL;
