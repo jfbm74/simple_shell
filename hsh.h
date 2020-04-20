@@ -59,6 +59,6 @@ int _compare(char *x, char *y);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, size_t n);
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *dest, char *src);
 
 #endif /**HOLBERTON_H*/
