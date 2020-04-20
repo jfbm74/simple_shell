@@ -49,21 +49,11 @@ int non_interactive_mode(char **av __attribute__((unused)))
 			if (full_command == NULL)
 			{
 				write(STDOUT_FILENO, "command not found\n", 18);
-				freedom(1, buffer);
-				buffer = NULL;
-				freedom(2, args);
-				args = NULL;
-				loop++;
 				continue;
 			}
 			else
 				errcode = execo(full_command, args);
-			loop++;
-			freedom(1, buffer);
-			buffer = NULL;
-			freedom(2, args);
-			args = NULL;
-			full_command = NULL;
+
 		}
 	}
 	freedom(1, buffer);

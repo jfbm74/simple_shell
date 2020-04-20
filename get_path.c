@@ -7,14 +7,23 @@
 
 char *ret_path_line()
 {
+	char *path = NULL;
 	int i = 0;
-
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		if (strcomparer(environ[i], "PATH") == 0)
+		{
+			path = malloc(sizeof(char *) * (strlarge(environ[i])));
+			if (path == NULL)
+			{
+				freedom(1, path);
+				exit(-1);
+			}
+			_strcpy(path, environ[i]);
 			break;
+		}
 	}
-	return (environ[i]);
+	return (path);
 }
 
 /**
@@ -108,12 +117,13 @@ char **getenvpath()
 {
 	char *tmp = NULL;
 	int size_args = 0;
-	char **env_args = NULL;
+	char **env_args;
 
 	tmp = ret_path_line();
 	change_equal_sig(tmp); /*Change  PATH= for PATH:*/
 	size_args = necklace_pearls(tmp);
 	env_args = parsing(tmp, size_args);
+	freedom(1,tmp);
 	tmp =  NULL;
 	return (env_args);
 }

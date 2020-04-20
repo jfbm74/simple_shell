@@ -21,7 +21,7 @@ int _compare(char *x, char *y)
 }
 
 /**
- * stringstring - compares two strings at a given position
+ * _strstr - compares two strings at a given position
  * @x: string to be compared
  * @y: string to compare
  * Return: pointer to the first occurence

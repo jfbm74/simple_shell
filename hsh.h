@@ -61,4 +61,8 @@ int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, size_t n);
 char *_strcpy(char *dest, char *src);
 
+void error_badcommand(char **args, char *buffer);
+char **args_constructor(char *buffer);
+void validagetline(char *buffer, int len, char **args, char **env_args);
+int notty(char **av __attribute__((unused)));
 #endif /**HOLBERTON_H*/

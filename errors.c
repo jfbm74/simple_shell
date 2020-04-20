@@ -18,3 +18,18 @@ void error_msg(char **args)
 	perror(error_message);
 	free(error_message);
 }
+
+/**
+ * error_badcommand - writes error depending on the error number
+ * @args: given command to execute
+ * @buffer: given command to execute
+ * Return: Nothing
+*/
+void error_badcommand(char **args, char *buffer)
+{
+	write(STDOUT_FILENO, "command not found\n", 18);
+	freedom(1, buffer);
+	buffer = NULL;
+	freedom(2, args);
+	args = NULL;
+}
